@@ -4,3 +4,13 @@
  * Use tables payment, rental, customer, address, city, and country.
  * Order by country alphabetically.
  */
+
+SELECT country, sum(amount) AS profit
+FROM country
+JOIN city using (country_id)
+JOIN address using (city_id)
+JOIN customer using (address_id)
+JOIN rental using (customer_id)
+JOIN payment using (rental_id)
+GROUP BY country
+ORDER BY country;
